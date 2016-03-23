@@ -42,16 +42,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helper.cs" />
-    <Compile Include="AMergeSort.cs" />
-    <Compile Include="MergeSort_Parallel_TH.cs" />
-    <Compile Include="MergeSort_Parallel.cs" />
-    <Compile Include="MergeSort_Serial.cs" />
+    <Compile Include="Merge\AMergeSort.cs" />
+    <Compile Include="Merge\MergeSort_Parallel_TH.cs" />
+    <Compile Include="Merge\MergeSort_Parallel.cs" />
+    <Compile Include="Merge\MergeSort_Serial.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AQuickSort.cs" />
-    <Compile Include="QuickSort_Parallel_TH.cs" />
-    <Compile Include="QuickSort_Parallel.cs" />
-    <Compile Include="QuickSort_Serial.cs" />
+    <Compile Include="Quick\AQuickSort.cs" />
+    <Compile Include="Quick\QuickSort_Parallel_TH.cs" />
+    <Compile Include="Quick\QuickSort_Parallel.cs" />
+    <Compile Include="Quick\QuickSort_Serial.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

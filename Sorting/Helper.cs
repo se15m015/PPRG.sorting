@@ -14,7 +14,7 @@ namespace Sorting
             Random rand = new Random(DateTime.Now.Millisecond);
             for (int i = 0; i < length; i++)
             {
-                rng[i] = rand.Next(0,9999);
+                rng[i] = rand.Next(0,10000);
             }
             return rng;
         }
