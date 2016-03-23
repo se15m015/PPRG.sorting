@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Sorting
 {
-    public class QuickSort_Serial
+    public abstract class AQuickSort
     {
         public static int Partition(int[] numbers, int first, int last)
         {
@@ -37,18 +38,6 @@ namespace Sorting
             int tmp = numbers[indexFirstOpen];
             numbers[indexFirstOpen] = numbers[i];
             numbers[i] = tmp;
-        }
-
-        public static void QuickSort_Recursive(int[] numbers, int left, int right)
-        {
-            if ((right - left)  < 1)
-            {
-                return;
-            }
-
-            int pivot = Partition(numbers, left, right);
-            QuickSort_Recursive(numbers, left, pivot - 1);
-            QuickSort_Recursive(numbers, pivot+1, right);
         }
     }
 }
