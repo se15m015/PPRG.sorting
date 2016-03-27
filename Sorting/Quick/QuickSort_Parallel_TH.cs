@@ -25,17 +25,19 @@ namespace Sorting
 
             if (partSize <= threshold)
             {
-                QuickSort_Recursive(numbers, left, pivot - 1,threshold);
+                QuickSort_Recursive(numbers, left, pivot - 1,threshold).RunSynchronously();
+                QuickSort_Recursive(numbers, pivot + 1, right, threshold).RunSynchronously();
             }
             else
             {
-                await Task.Run(() =>
+                await Task.Run(async () =>
                 {
-                    QuickSort_Recursive(numbers, left, pivot - 1, threshold);
+                    await QuickSort_Recursive(numbers, left, pivot - 1, threshold);
                 });
+
+                await QuickSort_Recursive(numbers, pivot + 1, right, threshold);
             }
 
-            QuickSort_Recursive(numbers, pivot + 1, right, threshold);
         }
     }
 }

@@ -21,11 +21,11 @@ namespace Sorting
             }
 
             int pivot = Partition(numbers, left, right);
-            await Task.Run(() => { 
-                QuickSort_Recursive(numbers, left, pivot - 1);
+            await Task.Run(async () => { 
+                await QuickSort_Recursive(numbers, left, pivot - 1);
             });
 
-            QuickSort_Recursive(numbers, pivot + 1, right);
+            await QuickSort_Recursive(numbers, pivot + 1, right);
         }
     }
 }

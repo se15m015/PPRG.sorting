@@ -13,12 +13,13 @@ namespace Sorting
         static void Main(string[] args)
         {
             //int arraySize = 3000000;
-            int arraySize = 150000;
+            int arraySize = 10;
 
             //int[] numbers = {3,1,4,1,345,509,90,3,4,675,2,12,6,5,3};
             var numbers = Helper.RandomNumbers(arraySize);
-            //QuickSort_Run(numbers, 5, 10, 15);
+            QuickSort_Run(numbers, 5, 10, 15);
             //Console.ReadLine();
+            Console.WriteLine();
             //MergeSort_Run(numbers, 5, 10, 15);
             MergeSort_Run(numbers, 1000, 3000, 6000);
 
@@ -65,6 +66,8 @@ namespace Sorting
                     parallelTimeTaken = sw_parallel.ElapsedMilliseconds;
                 });
 
+            Task.WaitAll(tasks[0]);
+
             Stopwatch sw_th1= new Stopwatch();
             sw_th1.Start();
             long parallelTH1TimeTaken = 0;
@@ -79,6 +82,8 @@ namespace Sorting
                     sw_th1.Stop();
                     parallelTH1TimeTaken = sw_th1.ElapsedMilliseconds;
                 });
+
+            Task.WaitAll(tasks[1]);
 
             Stopwatch sw_th2 = new Stopwatch();
             sw_th2.Start();
@@ -95,6 +100,7 @@ namespace Sorting
                     parallelTH2TimeTaken = sw_th2.ElapsedMilliseconds;
                 });
 
+            Task.WaitAll(tasks[2]);
 
             Stopwatch sw_th3 = new Stopwatch();
             sw_th3.Start();
@@ -112,7 +118,7 @@ namespace Sorting
                 });
 
 
-            Task.WaitAll(tasks);
+            Task.WaitAll(tasks[3]);
 
             Console.WriteLine("QuickSort:\n\t Serial time taken: {0},\n\t Parallel time taken: {1},\n\t Parallel_TH-{2}: time taken: {3},\n\t Parallel_TH-{4}: time taken: {5},\n\t Parallel_TH-{6}: time taken: {7}", serialTimeTaken,
                 parallelTimeTaken, th1, parallelTH1TimeTaken, th2, parallelTH2TimeTaken, th3, parallelTH3TimeTaken);
@@ -140,6 +146,7 @@ namespace Sorting
                     parallelTimeTaken = sw_parallel.ElapsedMilliseconds;
                 });
 
+            Task.WaitAll(tasks[0]);
 
             Stopwatch sw_par_th1 = new Stopwatch();
             sw_par_th1.Start();
@@ -152,6 +159,8 @@ namespace Sorting
                     parallelTH1TimeTaken = sw_par_th1.ElapsedMilliseconds;
                 });
 
+            Task.WaitAll(tasks[1]);
+
             Stopwatch sw_par_th2 = new Stopwatch();
             sw_par_th2.Start();
             int[] result_parallel_TH2;
@@ -162,6 +171,9 @@ namespace Sorting
                     sw_par_th2.Stop();
                     parallelTH2TimeTaken = sw_par_th2.ElapsedMilliseconds;
                 });
+
+
+            Task.WaitAll(tasks[2]);
 
             Stopwatch sw_par_th3 = new Stopwatch();
             sw_par_th3.Start();
@@ -174,7 +186,7 @@ namespace Sorting
                     parallelTH3TimeTaken = sw_par_th3.ElapsedMilliseconds;
                 });
 
-            Task.WaitAll(tasks);
+            Task.WaitAll(tasks[3]);
 
             Console.WriteLine("MergeSort:\n\t Serial time taken: {0},\n\t Parallel time taken: {1},\n\t Parallel_TH-{2}: time taken: {3},\n\t Parallel_TH-{4}: time taken: {5},\n\t Parallel_TH-{6}: time taken: {7}", serialTimeTaken,
                 parallelTimeTaken, th1, parallelTH1TimeTaken, th2, parallelTH2TimeTaken, th3, parallelTH3TimeTaken);
