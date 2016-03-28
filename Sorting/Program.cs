@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Sorting
 {
@@ -12,19 +13,59 @@ namespace Sorting
     {
         static void Main(string[] args)
         {
-            //int arraySize = 3000000;
-            int arraySize = 10;
+            int arraySize = 200000;
+            int[] numbers = Helper.RandomNumbers(arraySize);
 
-            //int[] numbers = {3,1,4,1,345,509,90,3,4,675,2,12,6,5,3};
-            var numbers = Helper.RandomNumbers(arraySize);
-            QuickSort_Run(numbers, 5, 10, 15);
+            string path = "numbers.store";
+            if (!File.Exists(path))
+            {
+                WriteNumbersToFile(numbers, path);
+            }
+            numbers = LoadNumbersFromFile(path);
+
+            arraySize = numbers.Length;
+
+
+            int th1 = 20000, th2 = 24000, th3 = 28000;
+
+            QuickSort_Run(numbers, th1, th2, th3);
             //Console.ReadLine();
             Console.WriteLine();
             //MergeSort_Run(numbers, 5, 10, 15);
-            MergeSort_Run(numbers, 1000, 3000, 6000);
+            MergeSort_Run(numbers, th1, th2, th3);
 
             Console.Beep();
             Console.ReadLine();
+        }
+
+        private static int[] LoadNumbersFromFile(string path)
+        {
+            int[] numbers;
+            FileStream fs = File.OpenRead(path);
+            StreamReader sr = new StreamReader(fs);
+            List<int> numbersReader = new List<int>();
+            while (sr.Peek() != -1)
+            {
+                numbersReader.Add(Int32.Parse(sr.ReadLine()));
+            }
+            sr.Close();
+            fs.Close();
+            numbers = numbersReader.ToArray();
+            return numbers;
+        }
+
+        private static void WriteNumbersToFile(int[] numbers,string path)
+        {
+            FileStream fs = File.OpenWrite(path);
+            StreamWriter sw = new StreamWriter(fs);
+            foreach (var number in numbers)
+            {
+                sw.WriteLine(number);
+            }
+
+            sw.Flush();
+            sw.Close();
+            fs.Close();
         }
 
         private static void QuickSort_Run(int[] numbers, int th1, int th2, int th3)

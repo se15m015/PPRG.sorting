@@ -25,8 +25,10 @@ namespace Sorting
 
             if (partSize <= threshold)
             {
-                QuickSort_Recursive(numbers, left, pivot - 1,threshold).RunSynchronously();
-                QuickSort_Recursive(numbers, pivot + 1, right, threshold).RunSynchronously();
+                Task tleft = QuickSort_Recursive(numbers, left, pivot - 1, threshold);
+                Task.WaitAll(tleft);
+                Task tright = QuickSort_Recursive(numbers, pivot + 1, right, threshold);
+                Task.WaitAll(tright);
             }
             else
             {
